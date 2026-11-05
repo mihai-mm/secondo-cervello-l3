@@ -56,7 +56,7 @@ Queste sono le regole che il tuo Claude deve seguire mentre ti guida. Si aggiung
 1. **Sei la guida, un passo alla volta.** Mai fare due passi senza la conferma della persona. Una domanda alla volta.
 2. **Annuncia prima di scrivere.** Prima di creare, modificare o copiare un file dici quale, dove e con cosa, e aspetti il sì. Dopo lo rileggi e dici come verificarlo. Il registro di questa guida lo aggiorni senza chiedere.
 3. **Decide la persona, sul suo lavoro.** Le opportunità vengono dal suo vault e dalle sue risposte; tu proponi, lei sceglie. Non spingere le skill della lezione se il suo lavoro chiede altro.
-4. **La persona fa i gesti della lezione.** Quando un passo dice «scrivi tu», mostra la frase da scrivere e aspetta che la scriva lei: lanciare un agent e crearne uno sono le due cose che deve saper rifare da sola.
+4. **La persona fa i gesti della lezione.** Quando un passo dice «scrivi tu», mostra la frase da scrivere e aspetta che la scriva lei: lanciare un agent e crearne uno sono le due cose che deve saper rifare senza aiuto.
 5. **Niente letture fuori dal vault**, e dentro il vault solo il lavoro: progetti, clienti, diari di lavoro. Non aprire diari personali (`Daily/`) né aree private (salute, famiglia, soldi personali), anche se stanno in `2-Areas/`. Nel dubbio, chiedi.
 6. **Non toccare i file della persona senza un sì**, e non riscrivere i giorni passati dei diari: si aggiunge.
 7. **Spiega ogni termine nuovo** la prima volta: agent, agent al volo, agent salvato, scrivania (il contesto), artifact (la pagina da guardare), skill.
@@ -111,7 +111,7 @@ Cosa fai:
 
 > Lancia un agent Sonnet che faccia da esploratore: legga il lavoro nel mio vault e mi trovi dove posso usare quello che ho visto oggi nella Lezione 3.
 
-3. Lancia l'agent con queste istruzioni (sono per lui, non per la persona). Prima sostituisci `[cartella della lezione]` con il percorso vero che hai trovato all'avvio:
+3. Lancia l'agent con queste istruzioni (sono per lui, non per la persona). Prima sostituisci `[cartella della lezione]` con il percorso vero che hai trovato all'avvio, e al posto di `[elenco]` metti i nomi delle cartelle e dei file di lavoro che vedi nel vault (solo i nomi, senza `Daily/` e senza le aree private): l'agent parte da lì.
 
 ```
 Sei l'esploratore. Leggi il lavoro nel vault della persona: CLAUDE.md, la cartella 1-Projects (clienti e progetti, con i loro diari in attivita/ e i materiali), 0-Inbox (ma non [cartella della lezione], che contiene questa guida e il cliente di esempio) e, in 2-Areas, solo le aree di lavoro. Non aprire Daily/, diari personali né aree private (salute, famiglia, soldi personali). Nel dubbio se una cartella è lavoro o privata, saltala e dillo nel resoconto. Non modificare nessun file.
@@ -131,6 +131,8 @@ Restituisci esattamente tre opportunità:
 - una per l'agent salvato.
 Per ognuna: un titolo breve; dove l'hai vista (cliente, file, frase del diario); cosa farebbe Claude; cosa ci guadagna la persona, in una riga; cosa serve (per esempio un file di numeri che non è nel vault). Per l'agent aggiungi: un nome breve, il compito in una frase, se basta che legga o deve anche scrivere, e quali di questi motivi lo rendono utile: occhi freschi (non ha visto nascere il lavoro), scrivania libera, un modello più leggero, regole fisse.
 
+Per trovare e leggere i file usa gli strumenti di ricerca e lettura (Glob, Grep, Read), non comandi del terminale: lavori in background e non puoi chiedere permessi. Parti da questo elenco dei file di lavoro: [elenco]
+
 Ogni opportunità deve avere un appiglio nel vault. Se il vault ha poco lavoro (nessun cliente o progetto con materiale), non inventare: scrivi «poco materiale» e quello che hai trovato.
 ```
 
@@ -149,12 +151,12 @@ Ogni opportunità deve avere un appiglio nel vault. Se il vault ha poco lavoro (
 Cosa fai:
 
 1. Riprendi l'opportunità per l'agent. Ricorda in due righe la differenza con l'esploratore: quello era al volo, per una volta; questo è salvato, per un lavoro che torna.
-2. Decidete insieme, una domanda alla volta: il **nome** (breve, senza spazi: `rilettore`, `controllo-preventivi`), il **compito** in una frase, se **basta che legga** (consigliato) o deve anche scrivere, e il **modello** (Sonnet per i lavori semplici: il lavoro lo fa comunque, e consuma meno).
+2. Proponi tu le quattro scelte, già compilate dall'opportunità: il **nome** (breve, senza spazi: `rilettore`, `controllo-preventivi`), il **compito** in una frase, se **basta che legga** (consigliato) o deve anche scrivere, e il **modello** (Sonnet per i lavori semplici: il lavoro lo fa comunque, e consuma meno). Spiega in una riga ciascuna e chiedi un solo sì, o cosa cambiare.
 3. Chiedi alla persona di scrivere lei la frase, con le sue scelte al posto delle parentesi:
 
 > Crea un agent che si chiama [nome]: [compito]. [Solo lettura.] Usa Sonnet.
 
-4. Scrivi il file in `.claude/agents/[nome].md`. L'app chiede il permesso di scrivere in `.claude/`: spiega che è normale e va consentito. Poi apri il file e mostralo: sono poche righe, nome, descrizione, strumenti, modello e istruzioni. Se vuole un modello da guardare, c'è `Esempi di agent/revisore.md` nella cartella della lezione: è il revisore di Paola.
+4. Scrivi il file in `.claude/agents/[nome].md`. L'app chiede il permesso di scrivere in `.claude/`: spiega che è normale e va consentito. Appena il file c'è, scrivi nel registro «Passo 3 in corso: agent [nome] creato, da provare (punto 5)». Poi apri il file e mostralo: sono poche righe, nome, descrizione, strumenti, modello e istruzioni. Se vuole un modello da guardare, c'è `Esempi di agent/revisore.md` nella cartella della lezione: è il revisore di Paola.
 5. Chiedi alla persona di provarlo su un suo file vero:
 
 > Usa [nome] su [file o cliente].
